@@ -2,146 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real-Time Chat</title>
-    <style>
-        body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .chat-container {
-            max-width: 400px;
-            width: 100%;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            border: 4px solid #ff4081;
-        }
-        .chat-box {
-            height: 350px;
-            overflow-y: auto;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            background: #fff5f8;
-            border-bottom: 3px solid #ff4081;
-            border-radius: 15px 15px 0 0;
-        }
-        .message {
-            padding: 12px;
-            margin: 8px;
-            border-radius: 12px;
-            max-width: 75%;
-            font-weight: bold;
-            font-style: italic;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .sent {
-            background: linear-gradient(135deg, #ff4081, #ff80ab);
-            color: white;
-            align-self: flex-end;
-        }
-        .received {
-            background: linear-gradient(135deg, #03a9f4, #81d4fa);
-            color: white;
-            align-self: flex-start;
-        }
-        .input-container {
-            display: flex;
-            padding: 10px;
-            background: #fff8e1;
-            border-top: 3px solid #ff4081;
-            border-radius: 0 0 15px 15px;
-        }
-        input {
-            flex: 1;
-            padding: 12px;
-            border: 2px solid #ff4081;
-            border-radius: 8px;
-            font-size: 16px;
-            color: #673ab7;
-            background: #fff;
-            font-weight: bold;
-            text-align: center;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        input::placeholder {
-            color: #ff4081;
-            font-style: italic;
-        }
-        button {
-            padding: 12px;
-            background: #673ab7;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            margin-left: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        button:hover {
-            background: #512da8;
-        }
-        @media (max-width: 500px) {
-            .chat-container {
-                width: 90%;
-            }
-        }
-    </style>
+    <title>Personal Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-box" id="chat-box"></div>
-        <div class="input-container">
-            <input type="text" id="message-input" placeholder="Type a message...">
-            <button onclick="sendMessage()">Send</button>
+    <header>
+        <h2 class="logo"><span>J's </span>Portfolio</h2>
+        <nav class="navigation">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+        <a href="#" class="btn-talk">Let's Talk</a>
+    </header>
+    <section class="home">
+        <div class="content">
+            <h2>Hi, I'm <span>Suganthi...</span></h2>
+            <h4>Frontend Developer</h4>
+            <p>Seeking Frontend developer an entry-level opportunity with an esteemed organization where I can utilize my skills & enhance learning in the field of work. Capable of mastering new technologies.</p>
+            <div class="btn-group">
+                <a href="#">Hire Me</a>
+                
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
         </div>
-    </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            localStorage.removeItem("chatHistory"); // Clear chat history on refresh
-            loadMessages();
-        });
-
-        function sendMessage() {
-            const input = document.getElementById("message-input");
-            const messageText = input.value.trim();
-            if (messageText === "") return;
-            
-            const message = { text: messageText, type: "sent" };
-            appendMessage(message);
-            saveMessage(message);
-            input.value = "";
-        }
-
-        function appendMessage(message) {
-            const chatBox = document.getElementById("chat-box");
-            const messageElement = document.createElement("div");
-            messageElement.classList.add("message", message.type);
-            messageElement.textContent = message.text;
-            chatBox.appendChild(messageElement);
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
-
-        function saveMessage(message) {
-            let messages = JSON.parse(localStorage.getItem("chatHistory")) || [];
-            messages.push(message);
-            localStorage.setItem("chatHistory", JSON.stringify(messages));
-        }
-
-        function loadMessages() {
-            const messages = JSON.parse(localStorage.getItem("chatHistory")) || [];
-            messages.forEach(appendMessage);
-        }
-    </script>
+    </section>
 </body>
 </html>
